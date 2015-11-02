@@ -9,6 +9,7 @@ class Application
       long_url = req.path_info.sub('/get_short_url/', '')
       short_url = UrlShortener.new.get_short_url(long_url)
       res['Content-Type'] = 'application/json'
+      res['Access-Control-Allow-Origin'] = '*'
       res.write({long_url: long_url, short_url: short_url}.to_json)
     end
     res.finish
